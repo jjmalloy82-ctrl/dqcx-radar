@@ -1,0 +1,58 @@
+@import "tailwindcss";
+
+:root {
+  --bg: #0b1014;
+  --bg-elev: #121920;
+  --bg-elev-2: #18222c;
+  --line: #243140;
+  --cyan: #22e0d0;
+  --cyan-dim: #0e7c74;
+  --ink: #e7eef4;
+  --muted: #8b9aab;
+  --warn: #e8b84a;
+  --danger: #e85d4a;
+}
+
+@theme inline {
+  --color-radar: #0b1014;
+  --color-radar-elev: #121920;
+  --color-radar-elev-2: #18222c;
+  --color-radar-line: #243140;
+  --color-radar-cyan: #22e0d0;
+  --color-radar-cyan-dim: #0e7c74;
+  --color-radar-ink: #e7eef4;
+  --color-radar-muted: #8b9aab;
+  --color-radar-warn: #e8b84a;
+  --color-radar-danger: #e85d4a;
+  --font-sans: var(--font-ibm-plex-sans);
+  --font-mono: var(--font-ibm-plex-mono);
+}
+
+html,
+body {
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--font-ibm-plex-sans), ui-sans-serif, system-ui, sans-serif;
+}
+
+body {
+  min-height: 100vh;
+}
+
+.radar-grid {
+  background-image:
+    linear-gradient(to right, rgb(34 224 208 / 0.045) 1px, transparent 1px),
+    linear-gradient(to bottom, rgb(34 224 208 / 0.045) 1px, transparent 1px);
+  background-size: 56px 56px;
+}
+
+.radar-scan {
+  background: radial-gradient(1200px 500px at 80% -10%, rgb(34 224 208 / 0.12), transparent 55%),
+    radial-gradient(800px 400px at 0% 100%, rgb(14 124 116 / 0.12), transparent 50%);
+}
+
+input,
+select,
+textarea {
+  color-scheme: dark;
+}
