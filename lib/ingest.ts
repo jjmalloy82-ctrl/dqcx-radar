@@ -7,7 +7,6 @@ import type {
   ProjectInput,
   Relationship,
   ScopeFit,
-  ScoreBand,
   Source,
   SourceType,
   Status,
@@ -253,7 +252,7 @@ export function normalizeLiveRecord(raw: unknown): ProjectInput {
   const bdOwner = blank(row.bd_owner_internal) ?? blank(row.bd_owner);
 
   return {
-    project_id: blank(row.project_id) ?? undefined,
+    project_id: blank(row.project_id) ?? "",
     name: String(row.name ?? "").trim() || "Untitled",
     aliases: asStringArray(row.aliases),
     campus: blank(row.campus),
