@@ -9,24 +9,25 @@ type BoardFile = {
   projects?: ProjectInput[];
 };
 
-function asInput(row: ProjectInput & Partial<Project>): ProjectInput {
-  const {
-    opportunity_score: _score,
-    score_band: _band,
-    score_rationale: _rationale,
-    score_breakdown: _breakdown,
-    ...input
-  } = row;
-  return input;
+function asInput(row: Record<string, unknown>): ProjectInput {
+  const omit = [
+    "opportunity_score",
+    "score_band",
+    "score_rationale",
+    "score_breakdown",
+  ];
+  const input = { ...row };
+  for (const key of omit) delete input[key];
+  return input as unknown as ProjectInput;
 }
 
 function loadSeedInputs(): ProjectInput[] {
-  const data = board as BoardFile | ProjectInput[];
+  const data = board as unknown as BoardFile | ProjectInput[];
   const list = Array.isArray(data) ? data : data.projects;
   if (!Array.isArray(list) || list.length === 0) {
     throw new Error("data/projects.json has no projects to seed.");
   }
-  return list.map((row) => asInput(row as ProjectInput & Partial<Project>));
+  return list.map((row) => asInput(row as unknown as Record<string, unknown>));
 }
 
 export function seedProjects(): Project[] {
