@@ -60,20 +60,17 @@ Unknowns reduce points. Competitor Cx locked is **−15**. Rumor-only / unsource
 
 ## Seed (post-race)
 
-Live records do **not** invent MW / COD / EPC / dollars. Seed lives in `data/projects.json` and is re-scored by `lib/scoring.ts` on ingest.
+Live records do **not** invent MW / COD / EPC / dollars. Seed is the listen board dump in `data/projects.json` (104 campuses, updated 2026-09-18). `lib/ingest.ts` maps that flattened pack into the Radar schema. Board scores on first load match the dump (CleanSpark / Beale / Frontier at **78 develop**). `lib/scoring.ts` still owns the number on add/edit.
 
-The listen workspace’s 104-row board dump did not arrive in this GitHub checkout. This seed is only what is sourced here:
+Develop on this dump (sorts to the top of `/app`):
 
-1. **CleanSpark Sandersville** — 175 MW critical IT (owner PR 2026-07-14), deliveries Q4 2027, GC/CxA unknown. Hunt brief: 78 develop.
-2. **Beale Luckett Road Marana** — construction window Q1/Q2 2027, TEP/Trico, air-cooled, 550 MW lower bound, GC/CxA open. From post-race BD / Day 3 cards (Beale hunt file was not on Drive). Hunt line: 78 develop.
-3. **Vantage Frontier Abilene** — 1.4 GW campus (owner PR), TABS TX3 complete 2027-11-12, liquid cool, Kiewit design, IT MW / tenant / GC unknown. Hunt brief: 78 develop.
-4. **STACK DFW02 Lancaster** — TABS2025010772 complete 2027-03-01, DCD campus ~220 MW, Corgan design, GC/Cx unknown. Hunt brief: 71 monitor.
-5. **Summit Project Horizon** — Fort Stockton TX, DQ# 260022, award pending September, `value_usd` 645435, BD David Dinh, status keep warm. **monitor**.
-6. **ColoShield - NSCALE Cx** — DQ# 260013. **intel_only**. No invented September revenue.
-7. Sparse hunt campuses (`record_kind=live`, intel_only, next action *Enrich from primary source*): Oulu, Goodnight, Columbiana, SMX01, CloudBurst TX, Hyperion Richland Parish, Tembo Cheyenne, Clydesdale Owasso.
-8. **North Texas AI Campus** — `record_kind=example`. A full enriched template with NEED tags. **Not a real pursuit.**
+1. **CleanSpark Sandersville** — 78 develop
+2. **Beale Luckett Road Marana** — 78 develop
+3. **Vantage Frontier Shackelford** — 78 develop
+4. **EXAMPLE — North Texas AI Campus** — 78 develop (`record_kind=example`, not a live pursuit)
+5. **Crusoe Abilene 900 MW (Microsoft)** — 75 develop
 
-Drop a replacement `data/projects.json` (array or `{ "projects": [...] }`) and reset the board to ingest a later listen dump. Do not hand-edit scores in the JSON — the function owns the number.
+The rest of the board is monitor / intel_only hunt records from the same dump (STACK DFW02, Whitney, PowerHouse Charlotte, Summit DQ# 260022, ColoShield DQ# 260013, and the sparse unlock parks). Replace `data/projects.json` and reset the board to ingest a later listen dump.
 
 ## Screens
 
