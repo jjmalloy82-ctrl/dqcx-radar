@@ -4,7 +4,7 @@ import fs from "fs";
 import path from "path";
 import Database from "better-sqlite3";
 import { applyScoring } from "./scoring";
-import { seedProjects } from "./seed";
+import { SEED_VERSION, seedProjects } from "./seed";
 import type { Project, ProjectFilters, ProjectInput } from "./types";
 
 type ProjectRow = {
@@ -48,9 +48,24 @@ function openDb(): Database.Database {
     );
     CREATE INDEX IF NOT EXISTS idx_projects_band ON projects(score_band);
     CREATE INDEX IF NOT EXISTS idx_projects_region ON projects(region);
+    CREATE TABLE IF NOT EXISTS meta (
+      key TEXT PRIMARY KEY,
+      value TEXT NOT NULL
+    );
   `);
-  const row = db.prepare("SELECT COUNT(*) AS c FROM projects").get() as { c: number };
-  if (row.c === 0) insertAll(db, seedProjects());
+  const countRow = db.prepare("SELECT COUNT(*) AS c FROM projects").get() as {
+    c: number;
+  };
+  const versionRow = db
+    .prepare("SELECT value FROM meta WHERE key = 'seed_version'")
+    .get() as { value: string } | undefined;
+  if (countRow.c === 0 || versionRow?.value !== SEED_VERSION) {
+    db.exec("DELETE FROM projects");
+    insertAll(db, seedProjects());
+    db.prepare(
+      "INSERT INTO meta (key, value) VALUES ('seed_version', @value) ON CONFLICT(key) DO UPDATE SET value = excluded.value",
+    ).run({ value: SEED_VERSION });
+  }
   globalForDb.dqcxSqlite = db;
   return db;
 }
@@ -113,7 +128,7 @@ export function listProjects(filters: ProjectFilters = {}): Project[] {
   const where = clauses.length ? `WHERE ${clauses.join(" AND ")}` : "";
   const rows = db
     .prepare(
-      `SELECT * FROM projects ${where} ORDER BY opportunity_score DESC, name ASC`,
+      `SELECT * FROM projects ${where} ORDER BY CASE score_band WHEN 'develop' THEN 0 ELSE 1 END, opportunity_score DESC, name ASC`,
     )
     .all(params) as ProjectRow[];
   let projects = rows.map(fromRow);
@@ -189,6 +204,9 @@ export function resetDemoData(): number {
   db.exec("DELETE FROM projects");
   const seeded = seedProjects();
   insertAll(db, seeded);
+  db.prepare(
+    "INSERT INTO meta (key, value) VALUES ('seed_version', @value) ON CONFLICT(key) DO UPDATE SET value = excluded.value",
+  ).run({ value: SEED_VERSION });
   return seeded.length;
 }
 

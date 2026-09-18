@@ -1,6 +1,7 @@
 import { FilterBar } from "@/components/FilterBar";
 import { NeedTags } from "@/components/NeedTags";
 import { ScoreBadge } from "@/components/ScoreBadge";
+import { filtersToQuery } from "@/lib/csv";
 import { listProjects } from "@/lib/db";
 import { locationLine, statusLabel } from "@/lib/format";
 import { needTags } from "@/lib/scoring";
@@ -32,6 +33,8 @@ export default async function BoardPage({
     q: sp.q ?? "",
   };
   const projects = listProjects(filters);
+  const exportQuery = filtersToQuery(filters);
+  const exportHref = exportQuery ? `/app/export?${exportQuery}` : "/app/export";
 
   return (
     <div className="space-y-5">
@@ -43,15 +46,23 @@ export default async function BoardPage({
           <h1 className="mt-1 text-2xl font-semibold">Radar</h1>
           <p className="mt-1 text-sm text-radar-muted">
             {projects.length} record{projects.length === 1 ? "" : "s"} · scored
-            function, not a news feed
+            function, not a news feed · develop first
           </p>
         </div>
-        <Link
-          href="/app/projects/new"
-          className="rounded-sm bg-radar-cyan px-3 py-2 font-mono text-[11px] uppercase tracking-wider text-radar"
-        >
-          Add project
-        </Link>
+        <div className="flex shrink-0 items-center gap-2">
+          <Link
+            href={exportHref}
+            className="rounded-sm border border-radar-line px-3 py-2 font-mono text-[11px] uppercase tracking-wider text-radar-muted hover:text-radar-cyan"
+          >
+            Export CSV
+          </Link>
+          <Link
+            href="/app/projects/new"
+            className="rounded-sm bg-radar-cyan px-3 py-2 font-mono text-[11px] uppercase tracking-wider text-radar"
+          >
+            Add project
+          </Link>
+        </div>
       </div>
 
       <FilterBar filters={filters} />
