@@ -60,7 +60,7 @@ Unknowns reduce points. Competitor Cx locked is **−15**. Rumor-only / unsource
 
 ## Seed (post-race)
 
-Live records do **not** invent MW / COD / EPC / dollars. Seed is the listen board dump in `data/projects.json` (104 campuses, updated 2026-09-18). `lib/ingest.ts` maps that flattened pack into the Radar schema. Board scores on first load match the dump (CleanSpark / Beale / Frontier at **78 develop**). `lib/scoring.ts` still owns the number on add/edit.
+Live records do **not** invent MW / COD / EPC / dollars. Seed is the listen board dump in `data/projects.json` (**114 live** + 1 example template, listen 2026-09-18 ~21:50Z). `lib/ingest.ts` maps that flattened pack into the Radar schema. Board scores on first load match the dump (CleanSpark / Beale / Frontier at **78 develop**). `lib/scoring.ts` still owns the number on add/edit.
 
 Develop on this dump (sorts to the top of `/app`):
 
@@ -70,7 +70,7 @@ Develop on this dump (sorts to the top of `/app`):
 4. **EXAMPLE — North Texas AI Campus** — 78 develop (`record_kind=example`, not a live pursuit)
 5. **Crusoe Abilene 900 MW (Microsoft)** — 75 develop
 
-The rest of the board is monitor / intel_only hunt records from the same dump (STACK DFW02, Whitney, PowerHouse Charlotte, Summit DQ# 260022, ColoShield DQ# 260013, and the sparse unlock parks). Replace `data/projects.json` and reset the board to ingest a later listen dump.
+Latest listen add: **Valara / NorthMark Spartanburg HPC** — 43 intel_only (SCDES air construction permit 2026-09-18; Cx/GC/IT MW unknown). Also on this dump: CoreSite DA1 Irving (62 monitor), Crossroads Spotsylvania, Vantage Lighthouse Port Washington, and the prior hunt board (STACK DFW02, Whitney, PowerHouse Charlotte, Summit DQ# 260022, ColoShield DQ# 260013). Replace `data/projects.json` and reset the board to ingest a later listen dump.
 
 ## Screens
 

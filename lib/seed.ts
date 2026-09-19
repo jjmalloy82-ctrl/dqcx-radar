@@ -2,14 +2,15 @@ import { ingestBoard } from "./ingest";
 import type { Project } from "./types";
 import board from "../data/projects.json";
 
-export const SEED_VERSION = "listen-board-2026-09-18";
+export const SEED_VERSION = "listen-board-2026-09-18-115";
 
 export function seedProjects(): Project[] {
   const projects = ingestBoard(board);
+  const live = projects.filter((p) => p.record_kind === "live").length;
 
-  if (projects.length < 104) {
+  if (projects.length < 114 || live < 114) {
     throw new Error(
-      `Seed expected 104+ listen-board campuses, got ${projects.length}.`,
+      `Seed expected 114+ live listen-board campuses, got ${live} live / ${projects.length} total.`,
     );
   }
 

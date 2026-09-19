@@ -27,6 +27,7 @@ export type LiveBoardFile = {
   product?: string;
   updated?: string;
   seed_version?: string;
+  listen_note?: string;
   projects?: unknown[];
 };
 
@@ -53,6 +54,7 @@ const PRIMARY_SOURCE_TYPES = new Set([
   "planning_board",
   "owner_local_gov",
   "press_release",
+  "utility_filing",
 ]);
 
 const INTERNAL_SOURCE_TYPES = new Set(["internal", "internal_hunt"]);
