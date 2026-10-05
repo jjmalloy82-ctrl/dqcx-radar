@@ -618,6 +618,14 @@ function renderDetail(id) {
   `;
 }
 
+function rememberList() {
+  try { sessionStorage.setItem("dqcxSeenList", "1"); } catch (err) { /* private mode */ }
+}
+
+function listWasSeen() {
+  try { return sessionStorage.getItem("dqcxSeenList") === "1"; } catch (err) { return false; }
+}
+
 function renderRoute() {
   const route = parseRoute();
   const list = $("#list");
@@ -634,18 +642,18 @@ function renderRoute() {
     detail.hidden = true;
     list.hidden = false;
     document.title = "DQCX Radar";
-    try { sessionStorage.setItem("dqcxSeenList", "1"); } catch (err) { /* private mode */ }
+    rememberList();
     window.scrollTo(0, listScroll);
   }
 }
 
 function goBack() {
   if (!location.hash.startsWith("#/p/")) return;
-  const before = location.hash;
-  history.back();
-  window.setTimeout(() => {
-    if (location.hash === before) location.replace("#/");
-  }, 60);
+  // history.back() only when this tab already showed the list. A campus
+  // link opened directly still has the tab's previous history (often
+  // about:blank), and back() would leave the site before any fallback runs.
+  if (listWasSeen()) history.back();
+  else location.replace("#/");
 }
 
 function clearFilters() {
@@ -867,6 +875,11 @@ async function init() {
   registerWorker();
   setupInstall();
   wire();
+  // This document opened on a campus link, so an earlier visit's flag
+  // must not count as "the list is the previous history entry".
+  if (parseRoute().view === "detail") {
+    try { sessionStorage.removeItem("dqcxSeenList"); } catch (err) { /* private mode */ }
+  }
   try {
     await loadBoard();
     booted = true;
