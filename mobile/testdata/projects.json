@@ -1,0 +1,172 @@
+{
+  "version": "0",
+  "product": "DQCX Radar",
+  "updated": "2026-10-03",
+  "listen_note": "internal listen scratch — do not ship /workspace/secret.md",
+  "projects": [
+    {
+      "project_id": "EXAMPLE-NTX-AI-001",
+      "name": "EXAMPLE — North Texas AI Campus (template)",
+      "record_kind": "example",
+      "template_notice": "NOT A REAL PURSUIT",
+      "city": "Example City",
+      "state": "TX",
+      "country": "US",
+      "region": "TX",
+      "project_type": "AI/HPC",
+      "status": "template",
+      "opportunity_score": 78,
+      "score_band": "develop",
+      "score_rationale": "template only",
+      "next_action": "Do not call",
+      "bd_owner": "SECRET BD OWNER",
+      "bd_owner_internal": "SECRET INTERNAL OWNER",
+      "notes_internal": "SECRET_NOTES_INTERNAL",
+      "sources": [
+        {"type": "internal", "url": null, "quote": "SECRET template note"}
+      ]
+    },
+    {
+      "project_id": "DQ-TEST-PURSUE",
+      "name": "Test Pursuit Campus",
+      "aliases": ["Alias One", "Pursuit Alias"],
+      "city": "Abilene",
+      "state": "TX",
+      "country": "US",
+      "region": "TX",
+      "record_kind": "live",
+      "project_type": "AI/HPC",
+      "it_mw": 100,
+      "critical_mw": 140,
+      "buildings": 2,
+      "liquid_cool_flag": false,
+      "status": "Announced. Cx not awarded.",
+      "owner": "Test Owner",
+      "developer": "Test Developer",
+      "tenant": "Test Tenant",
+      "gc": "Test GC",
+      "mep": "Test MEP",
+      "electrical_contractor": "Test Electric",
+      "mechanical_contractor": "Test Mechanical",
+      "cxa_incumbent": null,
+      "bd_owner": "SECRET BD OWNER",
+      "bd_owner_internal": "SECRET INTERNAL OWNER",
+      "notes_internal": "SECRET_NOTES_INTERNAL see /workspace/secret.md",
+      "announcement_date": "2026-01-15",
+      "l0_date": "2026-03-01",
+      "l1_date": "2026-10-01",
+      "l2_date": "2027-02-01",
+      "l3_date": "2027-06-01",
+      "l4_date": "2027-08-01",
+      "l5_date": "2027-10-01",
+      "l6_date": "2028-04-01",
+      "pursuit_window_start": "2026-06-01",
+      "pursuit_window_end": "2027-05-01",
+      "estimated_entry": "Inside the pre-L3 window.",
+      "opportunity_score": 92,
+      "score_band": "pursuit_now",
+      "score_rationale": "Fixture score for the pursue band.",
+      "next_action": "Call the owner Cx lead this week.",
+      "next_action_due": "2026-10-01",
+      "relationship_flags": ["existing_dqcx_rel"],
+      "blockers": ["not_awarded"],
+      "confidence": {"name": "confirmed", "bd_owner": "unknown", "it_mw": "confirmed"},
+      "sources": [
+        {
+          "type": "internal",
+          "url": "https://example.com/should-drop",
+          "quote": "SECRET internal https note"
+        },
+        {
+          "type": " internal_hunt ",
+          "url": "/workspace/DQCX_secret.md",
+          "quote": "SECRET local path"
+        },
+        {
+          "type": "owner",
+          "url": "/workspace/local.md",
+          "quote": "SECRET file path"
+        },
+        {
+          "type": "permit",
+          "url": "https://example.com/permit",
+          "date": "2026-01-15",
+          "quote": "Public permit excerpt for the fixture campus."
+        },
+        {
+          "type": "pr",
+          "url": null,
+          "quote": "No URL, drop this entry."
+        }
+      ]
+    },
+    {
+      "project_id": "DQ-TEST-DEVELOP",
+      "name": "Test Develop Campus",
+      "aliases": ["Develop Alias"],
+      "city": "Richmond",
+      "state": "VA",
+      "country": "US",
+      "region": "VA",
+      "record_kind": "live",
+      "project_type": "hyperscale",
+      "it_mw": 40,
+      "status": "Mapping stakeholders.",
+      "owner": "Develop Owner",
+      "tenant": null,
+      "developer": "Develop Owner",
+      "opportunity_score": 80,
+      "score_band": "develop",
+      "score_rationale": "Fixture develop score.",
+      "next_action": "Map the Cx buyer.",
+      "next_action_due": "2026-10-20",
+      "relationship_flags": [],
+      "blockers": ["cx_award_unknown"],
+      "sources": [
+        {"type": "owner", "url": "https://example.com/develop", "date": "2026-02-01", "quote": "Owner page."}
+      ]
+    },
+    {
+      "project_id": "DQ-TEST-MONITOR",
+      "name": "Test Monitor Campus",
+      "aliases": [],
+      "city": "Phoenix",
+      "state": "AZ",
+      "country": "US",
+      "region": "AZ",
+      "record_kind": "live",
+      "project_type": "colo",
+      "it_mw": null,
+      "critical_mw": 50,
+      "status": "Watch the award.",
+      "owner": null,
+      "developer": "Monitor Dev",
+      "opportunity_score": 60,
+      "score_band": "monitor",
+      "score_rationale": "Fixture monitor score. Critical MW is power, not IT.",
+      "next_action": "Revisit when a primary source names IT MW.",
+      "next_action_due": "2026-09-01",
+      "blockers": ["it_mw_unknown"],
+      "sources": [
+        {"type": "news", "url": "http://example.com/news", "date": "2026-03-01", "quote": "Public http story."}
+      ]
+    },
+    {
+      "project_id": "DQ-TEST-INTEL",
+      "name": "Test Intel Campus",
+      "city": "Atlanta",
+      "state": "GA",
+      "country": "US",
+      "region": "GA",
+      "record_kind": "live",
+      "project_type": "unknown",
+      "status": "Rumor only.",
+      "opportunity_score": 40,
+      "score_band": "intel_only",
+      "score_rationale": "Fixture intel score.",
+      "next_action": "File it. No outbound.",
+      "next_action_due": null,
+      "sources": []
+    }
+  ]
+}
